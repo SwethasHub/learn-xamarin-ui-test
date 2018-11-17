@@ -26,12 +26,12 @@ namespace XamarinFormsHelloWorld.UITest
             app = AppInitializer.StartApp(platform);
         }
 
-        private void SaveScreenshot([CallerMemberName]string title = "")
+        private void SaveScreenshot([CallerMemberName]string title = "", [CallerLineNumber]int lineNumber = -1)
         {
             FileInfo screenshot = app.Screenshot(title);
             if (TestEnvironment.IsTestCloud == false)
             {
-                File.Move(screenshot.FullName, Path.Combine(screenshot.DirectoryName, $"{title}{screenshot.Extension}"));
+                File.Move(screenshot.FullName, Path.Combine(screenshot.DirectoryName, $"{title}-{lineNumber}{screenshot.Extension}"));
             }
         }
 
@@ -52,6 +52,28 @@ namespace XamarinFormsHelloWorld.UITest
             app.Tap("ValidateCC");
             app.WaitForElement("message");
             Assert.IsTrue(app.Query(x => x.Id("message").Text("Correct")).Any());
+            SaveScreenshot();
+        }
+
+        [Test]
+        public void ScrollIndicator_ScrollToBottom_100Percentage()
+        {
+            app.ScrollDown("mainSv");
+            app.ScrollDown("mainSv");
+            app.ScrollDown("mainSv");
+            app.ScrollDown("mainSv");
+
+            Assert.IsTrue(app.Query("mainSvScrollStatus").First().Text == "100% scrolled");
+            SaveScreenshot();
+        }
+
+        [Test]
+        public void ScrollIndicator_NotScrollToBottom_Not100Percentage()
+        {
+            app.ScrollDown("mainSv");
+            app.ScrollDown("mainSv");
+
+            Assert.IsFalse(app.Query("mainSvScrollStatus").First().Text == "100% scrolled");
             SaveScreenshot();
         }
     }

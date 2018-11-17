@@ -26,5 +26,17 @@ namespace XamarinFormsHelloWorld
                 await DisplayAlert("Validate CC Result", "Correct", "OK");
             }
         }
+
+        private void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
+        {
+            var scrollViewHeight = mainSv.Height;
+            var contentHeight = mainSvContent.Height;
+            var maxScrollY = contentHeight - scrollViewHeight;
+
+            double scrollPercentage = e.ScrollY / maxScrollY * 100.00;
+
+            System.Diagnostics.Debug.WriteLine($"SV: {scrollViewHeight}, SVC: {contentHeight}, ScrollY: {e.ScrollY}");
+            mainSvScrollStatus.Text = $"{scrollPercentage.ToString("0")}% scrolled";
+        }
     }
 }

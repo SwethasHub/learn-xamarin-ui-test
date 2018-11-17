@@ -3,11 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XamarinFormsHelloWorld"
              x:Class="XamarinFormsHelloWorld.MainPage">
-
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Entry x:Name="entryCC" AutomationId="CreditCardEntry" Placeholder="At least 5 character"/>
-        <Button AutomationId="ValidateCC" Text="Validate CC" Clicked="Button_Clicked"/>
-    </StackLayout>
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollView x:Name="mainSv" AutomationId="mainSv" Grid.Row="0" Scrolled="ScrollView_Scrolled">
+            <StackLayout x:Name="mainSvContent">
+                <!-- CC Controls -->
+                <Entry x:Name="entryCC" AutomationId="CreditCardEntry" Placeholder="At least 5 character"/>
+                <Button AutomationId="ValidateCC" Text="Validate CC" Clicked="Button_Clicked"/>
+                <!-- Rainbows -->
+                <BoxView HeightRequest="400" Color="Red" HorizontalOptions="FillAndExpand"/>
+                <BoxView HeightRequest="400" Color="Orange" HorizontalOptions="FillAndExpand"/>
+                <BoxView HeightRequest="400" Color="Yellow" HorizontalOptions="FillAndExpand"/>
+                <BoxView HeightRequest="400" Color="Green" HorizontalOptions="FillAndExpand"/>
+                <BoxView HeightRequest="400" Color="Blue" HorizontalOptions="FillAndExpand"/>
+                <BoxView HeightRequest="400" Color="Violet" HorizontalOptions="FillAndExpand"/>
+                <BoxView HeightRequest="400" Color="Purple" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+        </ScrollView>
+        <Label Grid.Row="1" x:Name="mainSvScrollStatus" AutomationId="mainSvScrollStatus" HorizontalOptions="CenterAndExpand" Text="Scroll down to bottom"/>
+    </Grid>
+    
+    
 </ContentPage>

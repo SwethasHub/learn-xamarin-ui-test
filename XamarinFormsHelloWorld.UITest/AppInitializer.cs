@@ -15,7 +15,7 @@ namespace XamarinFormsHelloWorld.UITest
                     .InstalledApp("com.companyname.XamarinFormsHelloWorld")
                     //.ApkFile(@"C:\Repos\XamarinFormsHelloWorld\XamarinFormsHelloWorld\XamarinFormsHelloWorld.Android\bin\Debug\com.companyname.XamarinFormsHelloWorld.apk")
                     .EnableLocalScreenshots()
-                    .DeviceSerial("emulator-5554") // If we want it to run in specific device
+                    //.DeviceSerial("emulator-5554") // If we want it to run in specific device
                     .StartApp();
             }
 
